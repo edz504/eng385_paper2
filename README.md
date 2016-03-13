@@ -14,7 +14,7 @@ A brief analysis is conducted to explore the feasibility of various top-level ca
   * 4-word
 2.  Letter (single alphabet letter)
   * thirds of the alphabet (a little meaningless)
-3.  Noise  (no Wordnet synsets)
+3.  Other (no Wordnet synsets)
   * real word with no synset
   * jargon
   * typo
@@ -45,9 +45,9 @@ We first make a pass through every tag, classifying it into one of the top-level
   * check the jargon file to see if it's slang / jargon
   * if it is in neither, it is a typo.
     - [PyEnchant](http://stackoverflow.com/questions/3788870/how-to-check-if-a-word-is-an-english-word-with-python)
-    - [Slang list](http://onlineslangdictionary.com/word-list/0-a/)
+    - [Slang list](http://onlineslangdictionary.com/word-list/0-a/), extraction is done in `extract_slang.py`
 
-    Now, we must associate a tag to a part of speech and a synset in order to move forward.  For example, "run" can be a noun or a verb.  We use the text transcriptions of the ABC books to form a simple frequency distribution of adjective / verb / noun for each book.  Then, for each tag, we can collect its synsets and sample from the probability distribution associated with that book to select one of the synsets (always use the 01 synset, as they are ordered in vague usage ranking).  We do this once as we iterate through the tags.  The calculation of probability distributions and relevant wrangling is done in `calculate_book_pos_distributions.py`, and the selection of synsets is done in `pick_synset.py`.
+    Now, we must associate a tag to a part of speech and a synset in order to move forward.  For example, "run" can be a noun or a verb.  We use the text transcriptions of the ABC books to form a simple frequency distribution of adjective / verb / noun for each book.  Then, for each tag, we can collect its synsets and sample from the probability distribution associated with that book to select one of the synsets (always use the 01 synset, as they are ordered in vague usage ranking).  We do this once as we iterate through the tags.  The calculation of probability distributions and relevant wrangling is done in `calculate_book_pos_distributions.py`, and the selection of synsets is done in the pass through tags in `categorize_top.py`.  **Note that this results in a repeated tag for the same book having potentially different categorizations, which is acceptable from a theoretical standpoint.**
 
 4.  Use an [external sentiment dataset](https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/negative-words.txt)
   * Apply clustering

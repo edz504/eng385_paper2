@@ -6,13 +6,10 @@ import os
 import pandas as pd
 import re
 
-# Manually match the file names with the book titles in
-# the tag csv data.  Thankfully there are only 54 (53?).
 with open('data/cleaned_tags.pickle', 'rb') as f:
     tag_df = pickle.load(f)
 
-# Use fuzzy matching to create dictionary, anticipating
-# one off.
+# Use fuzzy matching to create dictionary.
 book_titles = set(tag_df.Book)
 filename_to_dict = {}
 for filename in os.listdir(

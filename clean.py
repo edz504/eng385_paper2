@@ -22,7 +22,7 @@ print len(set(tags))
 cleaned_tags = [re.sub(r"\s+", '_',
                        re.sub("[^a-zA-z\s+]+",
                        '',
-                       t.lower().strip()))
+                       t.lower()).strip())
                 for t in tags]
 tag_df['Cleaned_Tag'] = cleaned_tags
 print len(set(cleaned_tags))
