@@ -49,7 +49,7 @@ We first make a pass through every tag, classifying it into one of the top-level
 
     Now, we must associate a tag to a part of speech and a synset in order to move forward.  For example, "run" can be a noun or a verb.  We use the text transcriptions of the ABC books to form a simple frequency distribution of adjective / verb / noun for each book.  Then, for each tag, we can collect its synsets and sample from the probability distribution associated with that book to select one of the synsets (always use the 01 synset, as they are ordered in vague usage ranking).  We do this once as we iterate through the tags.  The calculation of probability distributions and relevant wrangling is done in `calculate_book_pos_distributions.py`, and the selection of synsets is done in the pass through tags in `categorize_top.py`.  **Note that this results in a repeated tag for the same book having potentially different categorizations, which is acceptable from a theoretical standpoint.**
 
-4.  Use an [external sentiment dataset](https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/negative-words.txt)
+4.  Use an [external sentiment dataset](https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/blob/master/data/opinion-lexicon-English/negative-words.txt), which must be cleaned and lemmatized just like our tags
   * Apply clustering
 5.  See #4.
 6.  See #4.
