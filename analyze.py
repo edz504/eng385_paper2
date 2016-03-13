@@ -1,13 +1,16 @@
+import cPickle as pickle
+import nltk
 import numpy as np
 import pandas as pd
-import nltk
 import re
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet as wn
 
-with open('cleaned_tags.pickle', 'rb') as f:
+with open('data/cleaned_tags.pickle', 'rb') as f:
     tag_df = pickle.load(f)
+
+lemma_tags = list(tag_df.Lemmatized_Tag)
 
 # For each lemmatized tag, compute its synsets.  Then,
 # calculate min_depth() and max_depth() for each synset,
@@ -44,6 +47,7 @@ scored_tags_unique = list(set(scored_tags))
 sorted_scored_tags = sorted(
     scored_tags_unique,
     key=lambda x: (x[1] is None, x[1]))
+print sorted_scored_tags[0:10]
 
 
 # The root depth scoring has led us to understand Wordnet

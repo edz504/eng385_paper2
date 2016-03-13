@@ -50,5 +50,5 @@ print len(set(lemma_tags))
 print len(set([t for t in lemma_tags if '_' in t]))
 # 1181 of which are multi_word
 
-with open('cleaned_tags.pickle', 'wb') as f:
+with open('data/cleaned_tags.pickle', 'wb') as f:
     pickle.dump(tag_df, f)
