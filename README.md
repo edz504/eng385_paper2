@@ -28,7 +28,7 @@ A brief analysis is conducted to explore the feasibility of various top-level ca
   * 3 subclusters
 8.  Noun Physical entity (same as above)
   * 3 subclusters
-9.  Noun Thing (same as above)
+9.  Adverb
   * 3 subclusters
 10. Verb
   * 3 subclusters
@@ -56,19 +56,22 @@ We first make a pass through every tag, classifying it into one of the top-level
 7.  Check the lowest common hypernym of the noun with the abstraction.n.06 synset: if it is the abstraction.n.06 synset itself, then label this tag as an Noun Abstraction.
   * Apply clustering
 8.  Same as #6, but with physical_entity.n.01.
-9.  Else case for #7 and #8.
+9.  Adverb (note that this is expected to be small due to most adverbs lemmatizing to adjectives)
+  * Hand-picked clusters by looking at [types of adverbs](http://www.myenglishgrammar.com/lesson-4-adverbs/1-types-of-adverbs.html): Time/Space, Manner, Degree
 10. There's only one verb category.
   * Apply clustering
 
 
 ### Clustering (Subcategories)
-Clustering is done with a modified k-means using Wu-Palmer similarity scores, with the following steps:
+Clustering is done with a modified k-means some quantified score, with the following steps:
 
   1.  Pick k random synsets among the N synsets in our subset.
-  2.  Iterate through all N synsets, assigning them to the cluster with the largest similarity score (Wu-Palmer is [0, 1]).
+  2.  Iterate through all N synsets, assigning them to the cluster with the largest score.
   3.  For each of the k clusters, pick a new center.  This is done by selecting the synset that maximizes the within-cluster similarity score, and is akin in normal k-means to calculating the Euclidean mean.
   4.  Repeat steps 2-3 until convergence.
   5.  Examine cluster sizes to ensure some degree of reasonable-ness.
   6.  Try to identify cluster characteristics in order to apply sub-labels.
+
+Upon implementation, we discovered that the re-centering method is computationally infeasible (O(n^3)).  Therefore, we opt to do a much more naive and simple clustering -- we do some large number X of random initializations, each time recording the proportional split between the cluster assignments.  This points to a shift towards focusing on creating subcategories that are meaningful due to their equality with respect to magnitude.
 
 

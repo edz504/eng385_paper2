@@ -41,6 +41,22 @@ title_df = pd.read_csv('data/abc-all/____titles.csv',
 filename_to_title = dict(zip(title_df[1],
                              title_df[0]))
 
+# Confirm that this matches up with our set of book titles
+# in the tag DataFrame
+book_titles_tag = set(tag_df['Book'])
+fixes = []
+for fn, title in filename_to_title.iteritems():
+    if title not in book_titles_tag:
+        print '"{0}" from .csv not in tag data'.format(title)
+        title2 = process.extractOne(title, book_titles_tag)[0]
+        print '"{0}" is closest match in tag data'.format(
+            title2)
+        fixes.append((fn, title2))
+
+# Fix the issues
+for fix in fixes:
+    filename_to_title[fix[0]] = fix[1]
+
 
 # First implement a function that takes in a FreqDist
 # and creates our own dictionary (Object def not necessary)
