@@ -9,29 +9,38 @@ import re
 with open('data/cleaned_tags.pickle', 'rb') as f:
     tag_df = pickle.load(f)
 
-# Use fuzzy matching to create dictionary.
-book_titles = set(tag_df.Book)
-filename_to_dict = {}
-for filename in os.listdir(
-    os.path.join(os.getcwd(), 'data/abc-all')):
-    # Ignore titles file
-    if filename == '__titles.txt':
-        continue
-    # Remove .txt 
-    s = filename[:-4]
+# # Use fuzzy matching to create dictionary.
+# book_titles = set(tag_df.Book)
+# filename_to_title = {}
+# for filename in os.listdir(
+#     os.path.join(os.getcwd(), 'data/abc-all')):
+#     # Ignore titles file
+#     if filename == '__titles.txt':
+#         continue
+#     # Remove .txt 
+#     s = filename[:-4]
 
-    # Keep letters only
-    cleaned_fn = ''.join([i for i in s if i.isalpha()])
-    filename_to_dict[filename] = process.extractOne(cleaned_fn,
-                                                    book_titles)[0]
+#     # Keep letters only
+#     cleaned_fn = ''.join([i for i in s if i.isalpha()])
+#     filename_to_title[filename] = process.extractOne(cleaned_fn,
+#                                                     book_titles)[0]
 
-# Manually inspect, then fix
-filename_to_dict['4844136-an-alphabet.txt'] = 'ABC An Alphabet'
-filename_to_dict['scriptures2.txt'] = "The Children's Moral Alphabet"
+# # Manually inspect, then fix
+# filename_to_title['4844136-an-alphabet.txt'] = 'ABC An Alphabet'
+# filename_to_title['scriptures2.txt'] = "The Children's Moral Alphabet"
 
-for book_title in book_titles:
-    if book_title not in filename_to_dict.values():
-        print book_title
+# for book_title in book_titles:
+#     if book_title not in filename_to_title.values():
+#         print book_title
+
+# Now that Ben Johnston has fixed the data, we can use
+# the titles .csv to form our filename_to_title object.
+title_df = pd.read_csv('data/abc-all/____titles.csv',
+                       header=None,
+                       index_col=False)
+filename_to_title = dict(zip(title_df[1],
+                             title_df[0]))
+
 
 # First implement a function that takes in a FreqDist
 # and creates our own dictionary (Object def not necessary)
@@ -69,7 +78,7 @@ def convert_pos(fd):
 # if it is not, we use the FD to find the highest frequency
 # POS.
 title_to_freq = {}
-for fn, title in filename_to_dict.iteritems():
+for fn, title in filename_to_title.iteritems():
     with open(os.path.join('data/abc-all', fn), 'rb') as f:
         raw_text = f.read()
     tokens = nltk.word_tokenize(raw_text.decode('utf-8'))

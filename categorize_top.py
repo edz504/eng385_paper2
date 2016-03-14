@@ -13,6 +13,20 @@ with open('data/cleaned_tags.pickle', 'rb') as f:
 with open('data/title_to_freq.pickle', 'rb') as f:
     title_to_freq = pickle.load(f)
 
+# Initialize dictionary for checking English words.
+d = enchant.Dict("en_US")
+
+# Load slang list.
+with open('data/slang.txt', 'rb') as f:
+    slang_list = f.read().split('\n')
+
+# Load positive and negative lists.
+with open('data/positive_clean.txt', 'rb') as f:
+    positive = f.read().split('\n')
+
+with open('data/negative_clean.txt', 'rb') as f:
+    negative = f.read().split('\n')
+
 # Fill this in 1-10
 top_category = [None] * len(tag_df)
 
@@ -20,13 +34,6 @@ top_category = [None] * len(tag_df)
 # For clustering subcategories, leave as None and fill
 # in later.
 sub_category = [None] * len(tag_df)
-
-# Initialize dictionary for checking English words.
-d = enchant.Dict("en_US")
-
-# Load slang list.
-with open('data/slang.txt', 'rb') as f:
-    slang_list = f.read().split('\n')
 
 for i, row in enumerate(tag_df.itertuples()):
     tag = row[7]
@@ -82,13 +89,18 @@ for i, row in enumerate(tag_df.itertuples()):
 
     rv = np.random.choice(new_pd.keys(), 1, new_pd.values())[0]
 
+    # Check categories 4-6
     if rv == 'a':
-        pass
+        if tag in positive:
+            top_category[i] = 1
+        elif tag in negative:
+            top_category[i] = 2
+        else:
+            top_category[i] = 3
+
+    # check categories 7-9
     elif rv == 'n':
         pass
     elif rv == 'v':
         pass
 
-elements = np.array([1.1, 2.2, 3.3])
-probabilities = np.array([0.2, 0.5, 0.3])
-print np.random.choice(elements, 1, list(probabilities))
