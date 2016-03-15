@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: eng385_paper2.aux
+The style file: ims.bst
+Database file #1: ref.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty booktitle in wup
+You've used 8 entries,
+            3063 wiz_defined-function locations,
+            676 strings with 5812 characters,
+and the built_in function-call counts, 3401 in all, are:
+= -- 274
+> -- 120
+< -- 6
++ -- 51
+- -- 39
+* -- 221
+:= -- 591
+add.period$ -- 24
+call.type$ -- 8
+change.case$ -- 50
+chr.to.int$ -- 8
+cite$ -- 9
+duplicate$ -- 248
+empty$ -- 269
+format.name$ -- 55
+if$ -- 651
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 45
+newline$ -- 47
+num.names$ -- 32
+pop$ -- 103
+preamble$ -- 1
+purify$ -- 45
+quote$ -- 0
+skip$ -- 114
+stack$ -- 0
+substring$ -- 92
+swap$ -- 106
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 63
+warning$ -- 1
+while$ -- 24
+width$ -- 0
+write$ -- 102
+(There was 1 warning)

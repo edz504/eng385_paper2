@@ -37,7 +37,8 @@ for i, subcategory in enumerate(tag_df['Subcategory']):
         category = tag_df['Top Category'][i]
         category_i = category - 4
         these_assignments = subcategory_assignments[category_i]
-        subcategory_fill[i] = these_assignments[index[category_i]]
+        # Add one to cluster values
+        subcategory_fill[i] = int(these_assignments[index[category_i]]) + 1
         index[category_i] += 1
     else:
         subcategory_fill[i] = tag_df['Subcategory'][i]
@@ -46,7 +47,15 @@ for i, subcategory in enumerate(tag_df['Subcategory']):
 for i in xrange(0, 7):
     assert index[i] == len(subcategory_assignments[i])
 
-tag_df['Subcategory and Cluster'] = subcategory_fill
+tag_df['Subcategory (Final)'] = [int(i)
+                                 for i in subcategory_fill]
 
 with open('data/tag_category2.pickle', 'wb') as f:
     pickle.dump(tag_df, f)
+
+tag_df['Unique Category'] = (tag_df['Top Category'].map(str) +
+                             "-" +
+                             tag_df['Subcategory (Final)'].map(str))
+
+tag_df.to_csv('data/tag_categorized.csv',
+              index=False)

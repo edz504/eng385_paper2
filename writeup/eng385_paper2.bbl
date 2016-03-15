@@ -1,0 +1,50 @@
+\begin{thebibliography}{8}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem[{Bird et~al.(2009)Bird, Loper and Klein}]{nltk}
+\textsc{Bird, S.}, \textsc{Loper, E.} and \textsc{Klein, E.} (2009).
+\newblock \textit{Natural Language Processing with Python}.
+\newblock O’Reilly Media Inc.
+
+\bibitem[{Breen(2011)}]{sentiment}
+\textsc{Breen, J.} (2011).
+\newblock Twitter sentiment analysis tutorial.
+\newblock
+  \url{https://github.com/jeffreybreen/twitter-sentiment-analysis-tutorial-201107/tree/master/data/opinion-lexicon-English}.
+
+\bibitem[{Fellbaum(1998)}]{wordnet}
+\textsc{Fellbaum, C.} (1998).
+\newblock \textit{WordNet: An Electronic Lexical Database}.
+\newblock MIT Press.
+
+\bibitem[{Kelly(1990-2015)}]{pyenchant}
+\textsc{Kelly, R.} (1990-2015).
+\newblock pyenchant.
+\newblock \url{https://pypi.python.org/pypi/pyenchant/}.
+
+\bibitem[{Manning et~al.(2009)Manning, Raghavan and Schütze}]{ir}
+\textsc{Manning, C.~D.}, \textsc{Raghavan, P.} and \textsc{Schütze, H.}
+  (2009).
+\newblock \textit{An Introduction to Information Retrieval}.
+\newblock Cambridge University Press.
+
+\bibitem[{MyEnglishGrammar.com(2016)}]{adverbs}
+\textsc{MyEnglishGrammar.com} (2016).
+\newblock Types of adverbs.
+\newblock
+  \url{http://www.myenglishgrammar.com/lesson-4-adverbs/1-types-of-adverbs.html}.
+
+\bibitem[{Rader(1996-2016)}]{slang}
+\textsc{Rader, W.} (1996-2016).
+\newblock The online slang dictionary.
+\newblock \url{http://onlineslangdictionary.com/word-list/}.
+
+\bibitem[{Wu and Palmer(1994)}]{wup}
+\textsc{Wu, Z.} and \textsc{Palmer, M.} (1994).
+\newblock Verb semantics and lexical selection.
+\newblock Association for Computational Linguistics.
+
+\end{thebibliography}

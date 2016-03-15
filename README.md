@@ -34,7 +34,7 @@ A brief analysis is conducted to explore the feasibility of various top-level ca
   * 3 subclusters
 
 ### Steps and Notes by Top-Level Category
-We first make a pass through every tag, classifying it into one of the top-level categories.  Then, we apply the further refinement detailed into one of the 3 subcategories, which can be an explicit set of cases or our modified K-Means clustering (see Clustering).  This pass is implemented in `categorize_top.py`.
+We first make a pass through every tag, classifying it into one of the top-level categories.  Then, we apply the further refinement detailed into one of the 3 subcategories, which can be an explicit set of cases or our modified clustering (see Clustering).  This pass is implemented in `categorize_top.py`.
 
 1.  Check for '_'
   * check for # of '_'
@@ -72,6 +72,6 @@ Clustering is done with a modified k-means some quantified score, with the follo
   5.  Examine cluster sizes to ensure some degree of reasonable-ness.
   6.  Try to identify cluster characteristics in order to apply sub-labels.
 
-Upon implementation, we discovered that the re-centering method is computationally infeasible (O(n^3)).  Therefore, we opt to do a much more naive and simple clustering -- we do some large number X of random initializations, each time recording the proportional split between the cluster assignments.  This points to a shift towards focusing on creating subcategories that are meaningful due to their equality with respect to magnitude.
+Upon implementation, we discovered that the re-centering method is computationally infeasible (O(n^3)).  Therefore, we opt to do a much more naive and simple clustering -- we do some large number X of random initializations, each time recording the proportional split between the cluster assignments.  We then pick the clustering that provides the most even splits.  This points to a shift towards focusing on creating subcategories that are meaningful due to their equality with respect to magnitude.  We also check that the average within-cluster similarity score is reasonable (over 0.2).
 
 
